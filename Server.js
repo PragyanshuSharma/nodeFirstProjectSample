@@ -1,6 +1,6 @@
 const express=require("express");
 const bodyparser = require('body-parser');
-
+const cors = require('cors');
 
 var db = require('knex')({
     client: 'sqlite3',
@@ -11,6 +11,8 @@ var db = require('knex')({
 
 const app=express();
 app.use(bodyparser());
+app.use(cors());
+
 
 app.get('/',(req,res)=>{
  res.send('Root Directory');
