@@ -10,8 +10,8 @@ var db = require('knex')({
   });
 
 const app=express();
-app.use(bodyparser());
-app.use(cors());
+app.use(bodyparser());//middleware
+app.use(cors());//middleware
 
 
 app.get('/',(req,res)=>{
@@ -20,16 +20,8 @@ app.get('/',(req,res)=>{
 
 
 app.post('/first',(req,res)=>{
-  var obj = {
-    status:'Wrong Password',
-    userid:''
-  };
-
-  let flag = '';
- const {user,password} = req.body;
-    console.log(" user , password" , user,password);
-
-    
+  const {user,password} = req.body;
+    //console.log(" user , password" , user,password);
 
   db('persons')
   .where('UserID','=',user)
@@ -38,11 +30,9 @@ app.post('/first',(req,res)=>{
     console.log("data is ",data);
     console.log("length is ",data.length); 
     if(data.length===1){
-        flag=  'correct';
         res.json({ status:'Correct' });
       }
      else
-     flag='Wrong'; 
      res.json({ status :'Wrong'});  
     })
    .catch(err=>{
