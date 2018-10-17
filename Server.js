@@ -1,11 +1,10 @@
 const express=require("express");
 
-var knex = require('knex')({
+var db = require('knex')({
     client: 'sqlite3',
     connection: {
-      filename:'/home/rishabh/Documents/Node.js/Database/mydatabase.sqlite';
-    
-    }
+      filename:'./Database/mydatabase.sqlite'
+        }
   });
 
 const app=express();
@@ -13,6 +12,18 @@ const app=express();
 app.get('/',(req,res)=>{
  res.send('Root Directory');
 })
+
+
+app.get('/select',(req,res)=>{
+  db('persons')
+  .then(data=>console.log(data[0].UserID , data[0].Password ))
+  .catch(err=>console.log(err))
+  
+  res.send('Sub root Directory');
+  
+ })
+
+
 app.listen(3000,()=>{
     console.log("Server has started");
 
