@@ -21,7 +21,7 @@ app.get('/',(req,res)=>{
 
 app.post('/first',(req,res)=>{
   const {user,password} = req.body;
-    //console.log(" user , password" , user,password);
+    console.log(" user , password" , user,password);
 
   db('persons')
   .where('UserID','=',user)
@@ -33,7 +33,7 @@ app.post('/first',(req,res)=>{
         res.json({ status:'Correct' });
       }
      else
-     res.json({ status :'Wrong'});  
+     res.json(     { status :'Wrong'}        );  
     })
    .catch(err=>{
     console.log('error ');
